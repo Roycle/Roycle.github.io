@@ -15,12 +15,12 @@
 <meta property="og:site_name" content="Icedle">
 <meta property="og:description" content="约瑟夫环问题描述已知n个人围成一圈（编号：1，2，3，…，n），从编号为1的人开始报数，报数为m的那个人出列；从他的下一个人又从1开始数，同样报数为m的人出列；依此循环下去，直到剩余一个人。求最后这一个人在最开始的序列中编号是几号？">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="d:%5Cmyblog%5Csource%5Cimg%5C2020321%5C%E7%BA%A6%E7%91%9F%E5%A4%AB%E7%8E%AF%E7%9A%84%E9%93%BE%E8%A1%A8%E8%A7%A3%E6%B3%95.png">
+<meta property="og:image" content="http://yoursite.com/2020/03/21/%E3%80%90%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B001%E3%80%91%E5%B7%9D%E5%A4%A7%E5%A4%8F%E4%BB%A4%E8%90%A5-%E7%BA%A6%E7%91%9F%E5%A4%AB%E7%8E%AF/%5Cimg%5C%E7%BA%A6%E7%91%9F%E5%A4%AB%E7%8E%AF%E7%9A%84%E9%93%BE%E8%A1%A8%E8%A7%A3%E6%B3%95.png">
 <meta property="article:published_time" content="2020-03-21T10:10:03.000Z">
-<meta property="article:modified_time" content="2020-03-21T10:35:34.939Z">
+<meta property="article:modified_time" content="2020-03-21T10:40:03.999Z">
 <meta property="article:author" content="icedle">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="d:%5Cmyblog%5Csource%5Cimg%5C2020321%5C%E7%BA%A6%E7%91%9F%E5%A4%AB%E7%8E%AF%E7%9A%84%E9%93%BE%E8%A1%A8%E8%A7%A3%E6%B3%95.png">
+<meta name="twitter:image" content="http://yoursite.com/2020/03/21/%E3%80%90%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B001%E3%80%91%E5%B7%9D%E5%A4%A7%E5%A4%8F%E4%BB%A4%E8%90%A5-%E7%BA%A6%E7%91%9F%E5%A4%AB%E7%8E%AF/%5Cimg%5C%E7%BA%A6%E7%91%9F%E5%A4%AB%E7%8E%AF%E7%9A%84%E9%93%BE%E8%A1%A8%E8%A7%A3%E6%B3%95.png">
   
     <link rel="alternative" href="/atom.xml" title="Icedle" type="application/atom+xml">
   
@@ -190,7 +190,7 @@
  <a id="more"></a>
 
 <h2 id="普通解法"><a href="#普通解法" class="headerlink" title="普通解法"></a>普通解法</h2><p>刚学数据结构的时候，我们可能用链表的方法去模拟这个过程，N个人看作是N个链表节点，节点1指向节点2，节点2指向节点3，……，节点N-1指向节点N，节点N指向节点1，这样就形成了一个环。然后从节点1开始1、2、3……往下报数，每报到M，就把那个节点从环上删除。下一个节点接着从1开始报数。最终链表仅剩一个节点。它就是最终的胜利者。</p>
-<p><img src="D:%5Cmyblog%5Csource%5Cimg%5C2020321%5C%E7%BA%A6%E7%91%9F%E5%A4%AB%E7%8E%AF%E7%9A%84%E9%93%BE%E8%A1%A8%E8%A7%A3%E6%B3%95.png" alt="约瑟夫环的链表解法"></p>
+<p><img src="%5Cimg%5C%E7%BA%A6%E7%91%9F%E5%A4%AB%E7%8E%AF%E7%9A%84%E9%93%BE%E8%A1%A8%E8%A7%A3%E6%B3%95.png" alt=""></p>
 <h4 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h4><p>要模拟整个游戏过程，时间复杂度高达O(nm)，当n，m非常大(例如上百万，上千万)的时候，几乎是没有办法在短时间内出结果的。</p>
 <h2 id="递归求解分析"><a href="#递归求解分析" class="headerlink" title="递归求解分析"></a>递归求解分析</h2><p>将这n个人从0~n-1编号（1是习惯从0开始；2是如果m大于等于n时，第一个出列的人编号是m%n，m%n可能等于0，简化后续序列的模式化处理），则报数为m-1的人出列，最后结果加1就为原问题的解，以下，我们来分析出列的过程：</p>
 <p>第一次出列-n阶约瑟夫环的问题（n个人）<br>0，1，2，3，4，5，…，n-2，n-1<br>第一次出列的人的编号为<strong>(m-1)%n1</strong>（记n1为第一次编号的总人数），从他的下一个人又开始从0开始报数，为了方便我们记k1=m%n1，如下：<br>0，1，2，3，4，5，…，k1-1(第一次出列人的编号(m-1)%n1)，k1，k1+1，…，n-2，n-1</p>
