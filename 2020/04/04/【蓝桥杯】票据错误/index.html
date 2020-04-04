@@ -6,16 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 算法 | Icedle</title>
+  <title>【蓝桥杯】票据错误 | Icedle</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="A common student among common people">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Icedle">
-<meta property="og:url" content="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/index.html">
+  <meta name="description" content="排序，注意断号和重号的判断，以及scanf(“%d”,&amp;a)!&#x3D;EOF的使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【蓝桥杯】票据错误">
+<meta property="og:url" content="http://yoursite.com/2020/04/04/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%91%E7%A5%A8%E6%8D%AE%E9%94%99%E8%AF%AF/index.html">
 <meta property="og:site_name" content="Icedle">
-<meta property="og:description" content="A common student among common people">
+<meta property="og:description" content="排序，注意断号和重号的判断，以及scanf(“%d”,&amp;a)!&#x3D;EOF的使用">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-04T15:03:26.000Z">
+<meta property="article:modified_time" content="2020-04-04T15:13:27.523Z">
 <meta property="article:author" content="icedle">
+<meta property="article:tag" content="蓝桥杯，排序">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Icedle" type="application/atom+xml">
@@ -162,139 +165,226 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-【蓝桥杯】票据错误" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      【蓝桥杯】票据错误
+    </h1>
+  
+
+        
+        <a href="/2020/04/04/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%91%E7%A5%A8%E6%8D%AE%E9%94%99%E8%AF%AF/" class="archive-article-date">
+  	<time datetime="2020-04-04T15:03:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-04</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>排序，注意断号和重号的判断，以及scanf(“%d”,&amp;a)!=EOF的使用</p>
+<a id="more"></a>
+
+<h5 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h5><p>某涉密单位下发了某种票据，并要在年终全部收回。</p>
+<p>每张票据有唯一的ID号。全年所有票据的ID号是连续的，但ID的开始数码是随机选定的。</p>
+<p>因为工作人员疏忽，在录入ID号的时候发生了一处错误，造成了某个ID断号，另外一个ID重号。</p>
+<p>你的任务是通过编程，找出断号的ID和重号的ID。</p>
+<p>假设断号不可能发生在最大和最小号。</p>
+<h5 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h5><p>要求程序首先输入一个整数N(N&lt;100)表示后面数据行数。</p>
+<p>接着读入N行数据。</p>
+<p>每行数据长度不等，是用空格分开的若干个（不大于100个）正整数（不大于100000），请注意行内和行末可能有多余的空格，你的程序需要能处理这些空格。</p>
+<p>每个整数代表一个ID号。</p>
+<h5 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h5><p>要求程序输出1行，含两个整数m n，用空格分隔。</p>
+<p>其中，m表示断号ID，n表示重号ID</p>
+<p>样例输入1</p>
+<p>2<br>5 6 8 11 9<br>10 12 9</p>
+<p>样例输出1</p>
+<p>7 9</p>
+<p>样例输入2</p>
+<p>6<br>164 178 108 109 180 155 141 159 104 182 179 118 137 184 115 124 125 129 168 196<br>172 189 127 107 112 192 103 131 133 169 158<br>128 102 110 148 139 157 140 195 197<br>185 152 135 106 123 173 122 136 174 191 145 116 151 143 175 120 161 134 162 190<br>149 138 142 146 199 126 165 156 153 193 144 166 170 121 171 132 101 194 187 188<br>113 130 176 154 177 120 117 150 114 183 186 181 100 163 160 167 147 198 111 119</p>
+<p>样例输出2</p>
+<p>105 120</p>
+<h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n,a,num=<span class="number">0</span>,ans1,ans2;</span><br><span class="line">	<span class="keyword">int</span> p[<span class="number">105</span>];</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a)!=EOF)</span><br><span class="line">	&#123;</span><br><span class="line">		p[num++]=a;</span><br><span class="line">	&#125;</span><br><span class="line">	sort(p,p+num);</span><br><span class="line">	<span class="comment">//寻找断号和重号 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span> ;i&lt;num<span class="number">-1</span> ;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(p[i]==p[i+<span class="number">1</span>]) ans2 = p[i];</span><br><span class="line">		<span class="keyword">if</span>(p[i]==p[i+<span class="number">1</span>]<span class="number">-2</span>) ans1 = p[i]+<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;ans1&lt;&lt;<span class="string">" "</span>&lt;&lt;ans2&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/02/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%91%E5%B0%8F%E6%95%B0%E7%9A%84%E7%AC%ACn%E4%BD%8D/" class="archive-article-date">
-  	<time datetime="2020-04-02T15:46:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/02/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%91%E5%B0%8F%E6%95%B0%E7%9A%84%E7%AC%ACn%E4%BD%8D/">【蓝桥杯】小数的第n位</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">蓝桥杯</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">蓝桥杯，排序</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/04/04/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%91%E7%A5%A8%E6%8D%AE%E9%94%99%E8%AF%AF/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/22/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%91C-C-%E6%A0%A1%E5%86%85%E6%A8%A1%E6%8B%9F%E8%B5%9B-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/" class="archive-article-date">
-  	<time datetime="2020-03-22T14:02:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-22</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2020/04/04/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%91P1001%EF%BC%88%E5%A4%A7%E6%95%B0%E4%B9%98%E6%B3%95%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          【蓝桥杯】P1001（大数乘法）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/04/04/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%91%E8%BD%AC%E5%9C%88%E6%B8%B8%E6%88%8F%EF%BC%88%E5%BF%AB%E9%80%9F%E5%B9%82%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【蓝桥杯】转圈游戏（快速幂）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/22/%E3%80%90%E8%93%9D%E6%A1%A5%E6%9D%AF%E3%80%91C-C-%E6%A0%A1%E5%86%85%E6%A8%A1%E6%8B%9F%E8%B5%9B-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/">【蓝桥杯】C/C++校内模拟赛(持续更新)</a>
-    </h1>
+        
+        
+    </div>
+</aside>
+
+
+
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
+
+  
+
+  
+
+  
+
+
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/21/%E3%80%90%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B001%E3%80%91%E5%B7%9D%E5%A4%A7%E5%A4%8F%E4%BB%A4%E8%90%A5-%E7%BA%A6%E7%91%9F%E5%A4%AB%E7%8E%AF/" class="archive-article-date">
-  	<time datetime="2020-03-21T10:10:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/21/%E3%80%90%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B001%E3%80%91%E5%B7%9D%E5%A4%A7%E5%A4%8F%E4%BB%A4%E8%90%A5-%E7%BA%A6%E7%91%9F%E5%A4%AB%E7%8E%AF/">【算法笔记01】川大夏令营-约瑟夫环</a>
-    </h1>
-  
+        <section id="comments" class="comments">
+          <style>
+            .comments{margin:30px;padding:10px;background:#fff}
+            @media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#fff}}
+          </style>
+          <div id="vcomment" class="comment"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    var notify = 'false' == true ? true : false;
+    var verify = 'false' == true ? true : false;
+    new Valine({
+        av: AV,
+        el: '#vcomment',
+        notify: notify,
+        app_id: "n64Sa0hYHAr4SwcauBkl0Pw3-gzGzoHsz",
+        app_key: "RtkNhwoAxSrYGc8342nkQVu8",
+        placeholder: "说点什么吧...",
+        avatar:"mm",
+    });
+</script>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
+      </section>
     
 
 
@@ -318,9 +408,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
